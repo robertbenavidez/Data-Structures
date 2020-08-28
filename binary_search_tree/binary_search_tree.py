@@ -11,6 +11,14 @@ This part of the project comprises two days:
 """
 
 
+# import sys
+
+# sys.path.append("../stack")
+# from stack import Stack
+
+# sys.path.append("../queue")
+# from queue import Queue
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -65,20 +73,25 @@ class BSTNode:
             return self.right.get_max()
 
     # Call the function `fn` on the value of each node
-    def for_each(self, fn):
+    def for_each(self, cb):
         # This is a recursive DFT
-        fn(self.value)
+        cb(self.value)
         if self.left:
-            self.left.for_each(fn)
+            self.left.for_each(cb)
         if self.right:
-            self.right.for_each(fn)
+            self.right.for_each(cb)
 
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
-        pass
+        # print("node", self.value)
+        if self.left:
+            self.left.in_order_print()
+        print(self.value)
+        if self.right:
+            self.right.in_order_print()
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
@@ -102,26 +115,23 @@ class BSTNode:
         pass
 
 
-"""
-This code is necessary for testing the `print` methods
-"""
-# bst = BSTNode(1)
-#
-# bst.insert(8)
-# bst.insert(5)
-# bst.insert(7)
-# bst.insert(6)
-# bst.insert(3)
-# bst.insert(4)
-# bst.insert(2)
-#
+bst = BSTNode(1)
+
+bst.insert(8)
+bst.insert(5)
+bst.insert(7)
+bst.insert(6)
+bst.insert(3)
+bst.insert(4)
+bst.insert(2)
+
 # bst.bft_print()
 # bst.dft_print()
-#
+
 # print("elegant methods")
 # print("pre order")
 # bst.pre_order_dft()
-# print("in order")
-# bst.in_order_dft()
+print("in order")
+bst.in_order_print()
 # print("post order")
 # bst.post_order_dft()
